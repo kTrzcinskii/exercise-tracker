@@ -4,6 +4,7 @@ import "dotenv/config";
 import "express-async-errors";
 import notFound from "./middlewares/notFound";
 import errorHandler from "./middlewares/errorHandler";
+import mongoose from "mongoose";
 
 const app = express();
 app.use(cors());
@@ -21,6 +22,16 @@ app.use(errorHandler);
 app.use(notFound);
 
 const port = process.env.PORT || 5000;
-app.listen(process.env.PORT || 5000, () => {
-  console.log("Your app is listening on port " + port);
-});
+
+const start = async () => {
+  try {
+    await mongoose.connect(process.env.MONGO_URI!);
+    app.listen(process.env.PORT || 5000, () => {
+      console.log("Your app is listening on port " + port);
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+start();
