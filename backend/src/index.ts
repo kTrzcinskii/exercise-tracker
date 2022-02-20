@@ -5,6 +5,7 @@ import "express-async-errors";
 import notFound from "./middlewares/notFound";
 import errorHandler from "./middlewares/errorHandler";
 import mongoose from "mongoose";
+import userRouter from "./routes/user";
 
 const app = express();
 app.use(cors());
@@ -14,6 +15,8 @@ app.use(express.static("public"));
 app.get("/", function (_: Request, res: Response) {
   res.sendFile(process.cwd() + "/views/index.html");
 });
+
+app.use("/api/users", userRouter);
 
 //handling errors
 app.use(errorHandler);
