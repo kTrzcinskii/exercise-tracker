@@ -8,7 +8,7 @@ const errorHandler: ErrorRequestHandler = (error: CustomError, _, res, __) => {
     message: error.message || "Something went wrong, try again later",
   };
 
-  res.status(CustomError.statusCode).json({ CustomError: error.message });
+  res.status(CustomError.statusCode).json({ Error: error.message });
 };
 
 export default errorHandler;
