@@ -79,7 +79,7 @@ export const getUserLogs = async (req: Request, res: Response) => {
     );
   }
 
-  const exercises = await Exercise.find({ userId });
+  const exercises = await Exercise.find({ userId }).sort({ date: -1 });
 
   const log: any[] = [];
 
