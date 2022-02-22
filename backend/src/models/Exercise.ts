@@ -1,6 +1,14 @@
-import mongoose from "mongoose";
+import mongoose, { Document } from "mongoose";
 
-const ExerciseSchema = new mongoose.Schema({
+export interface ExerciseInterface extends Document {
+  username: string;
+  description: string;
+  duration: number;
+  date: Date;
+  userId: string;
+}
+
+const ExerciseSchema = new mongoose.Schema<ExerciseInterface>({
   username: {
     type: String,
     required: [true, "you must provide a username"],
@@ -23,4 +31,4 @@ const ExerciseSchema = new mongoose.Schema({
   },
 });
 
-export default mongoose.model("Exercise", ExerciseSchema);
+export default mongoose.model<ExerciseInterface>("Exercise", ExerciseSchema);
