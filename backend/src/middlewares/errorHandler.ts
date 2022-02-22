@@ -11,7 +11,13 @@ const errorHandler: ErrorRequestHandler = (error: CustomError, _, res, __) => {
   if (error.message.includes("Cast to ObjectId failed")) {
     return res
       .status(StatusCodes.BAD_REQUEST)
-      .json({ Error: "Provided id has wrong format" });
+      .json({ Error: "Provided id has incorrect format" });
+  }
+
+  if (error.message.includes("Exercise validation failed: date")) {
+    return res
+      .status(StatusCodes.BAD_REQUEST)
+      .json({ Error: "Provided date has incorrect format" });
   }
 
   return res.status(CustomError.statusCode).json({ Error: error.message });
