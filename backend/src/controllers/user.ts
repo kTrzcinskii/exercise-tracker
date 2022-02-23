@@ -3,7 +3,7 @@ import { StatusCodes } from "http-status-codes";
 import CustomError from "../errors/CustomError";
 import User from "../models/User";
 import Exercise from "../models/Exercise";
-import { filterOjb } from "../utils/filterObjInterface";
+import { filterDateOjb } from "../utils/filterDateObjInterface";
 
 export const getAllUsers = async (_: Request, res: Response) => {
   const users = await User.find({});
@@ -82,26 +82,35 @@ export const getUserLogs = async (req: Request, res: Response) => {
 
   const filterFrom = req.query.from;
   const filterTo = req.query.to;
+  const filterLimit = req.query.limit;
 
-  let filterObj: filterOjb = {};
+  let filterDateObj: filterDateOjb = {};
 
   if (filterFrom && typeof filterFrom === "string") {
-    filterObj.$gt = new Date(filterFrom);
+    filterDateObj.$gt = new Date(filterFrom);
   }
 
   if (filterTo && typeof filterTo === "string") {
-    filterObj.$lt = new Date(filterTo);
+    filterDateObj.$lt = new Date(filterTo);
   }
 
   let queryObj = {};
   if (filterFrom || filterTo) {
-    queryObj = { date: filterObj };
+    queryObj = { ...queryObj, date: filterDateObj };
   }
 
-  const exercises = await Exercise.find({
+  const exercisesPromise = Exercise.find({
     userId,
     ...queryObj,
   }).sort({ date: -1 });
+
+  let exercises;
+
+  if (filterLimit) {
+    exercises = await exercisesPromise.limit(Number(filterLimit));
+  } else {
+    exercises = await exercisesPromise;
+  }
 
   const log: any[] = [];
 
