@@ -3,6 +3,7 @@ import { StatusCodes } from "http-status-codes";
 import CustomError from "../errors/CustomError";
 import User from "../models/User";
 import Exercise from "../models/Exercise";
+import { filterOjb } from "../utils/filterObjInterface";
 
 export const getAllUsers = async (_: Request, res: Response) => {
   const users = await User.find({});
@@ -79,7 +80,28 @@ export const getUserLogs = async (req: Request, res: Response) => {
     );
   }
 
-  const exercises = await Exercise.find({ userId }).sort({ date: -1 });
+  const filterFrom = req.query.from;
+  const filterTo = req.query.to;
+
+  let filterObj: filterOjb = {};
+
+  if (filterFrom && typeof filterFrom === "string") {
+    filterObj.$gt = new Date(filterFrom);
+  }
+
+  if (filterTo && typeof filterTo === "string") {
+    filterObj.$lt = new Date(filterTo);
+  }
+
+  let queryObj = {};
+  if (filterFrom || filterTo) {
+    queryObj = { date: filterObj };
+  }
+
+  const exercises = await Exercise.find({
+    userId,
+    ...queryObj,
+  }).sort({ date: -1 });
 
   const log: any[] = [];
 
