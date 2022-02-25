@@ -1,21 +1,20 @@
-interface ButtonProps {
-  onClick: () => void;
+type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   classNames?: string;
-  type?: "primary" | "secondary";
-}
+  variantType?: "primary" | "secondary";
+};
 
 const Button: React.FC<ButtonProps> = ({
   children,
-  onClick,
   classNames,
-  type = "primary",
+  variantType = "primary",
+  ...props
 }) => {
   return (
     <button
-      onClick={onClick}
-      className={`${type === "primary" && "btn-primary"} ${
-        type === "secondary" && "btn-secondary"
+      className={`${variantType === "primary" && "btn-primary"} ${
+        variantType === "secondary" && "btn-secondary"
       } ${classNames}`}
+      {...props}
     >
       {children}
     </button>
