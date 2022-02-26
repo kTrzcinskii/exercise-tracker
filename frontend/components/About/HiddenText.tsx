@@ -14,9 +14,9 @@ const HiddenText: React.FC<HiddenTextProps> = ({ heading, children }) => {
 
   useEffect(() => {
     if (childHeightRef.current?.clientHeight) {
-      setChildHeight(childHeightRef.current?.clientHeight);
+      setChildHeight(Number(childHeightRef.current?.clientHeight));
     }
-  }, []);
+  }, [childHeightRef]);
 
   useEffect(() => {
     if (isOpen) {
@@ -29,6 +29,8 @@ const HiddenText: React.FC<HiddenTextProps> = ({ heading, children }) => {
       setTimesUp(false);
     }
   }, [isOpen]);
+
+  // const myShit = `h-[${childHeight.toString()}px]`;
 
   return (
     <div className='mt-6 md:mt-8 lg:mt-10 bg-white border-2 border-blue-800 shadow-md rounded-lg py-2 px-4 md:py-4 md:px-6'>
@@ -44,13 +46,17 @@ const HiddenText: React.FC<HiddenTextProps> = ({ heading, children }) => {
       </div>
       <div
         className={`${
-          isOpen ? `mt-2 md:mt-3 lg:mt-5 h-[${childHeight}px]` : "h-0"
+          isOpen
+            ? `mt-2 md:mt-3 lg:mt-5 h-[${childHeight.toString()}px]`
+            : "h-0"
         } transition-all duration-300 ease-in-out`}
       >
         <div
           ref={childHeightRef}
           className={`${
-            isOpen && timesUp ? "transition-all duration-100" : "invisible "
+            isOpen && timesUp
+              ? "transition-all duration-100 visible"
+              : "invisible "
           } `}
         >
           {children}
