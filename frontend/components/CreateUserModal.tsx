@@ -17,12 +17,12 @@ const CreateUserModal: React.FC<CreateUserModalProps> = ({
   return (
     <div
       className={`${
-        showModal ? "z-10 opacity-100" : "-z-10 opacity-0"
-      } absolute top-0 left-0 right-0 bottom-0 bg-black bg-opacity-70 flex justify-center items-center transition-all duration-500 ease-in-out`}
+        showModal ? "z-10 opacity-100" : "delay-500 -z-10 opacity-0"
+      } absolute top-0 left-0 right-0 bottom-0 bg-black bg-opacity-70 flex justify-center items-center transition-all duration-100 ease-in-out`}
     >
       <div
         className={`${
-          showModal ? "" : "-translate-y-[150%]"
+          showModal ? "delay-100" : "-translate-y-[200%]"
         } bg-white py-5 px-8 md:py-8 md:px-11 lg:py-11 lg:px-14 xl:py-16 xl:px-20 rounded-md shadow-lg shadow-slate-800 relative transition-all duration-500 ease-in-out`}
       >
         <CloseBtn onClick={() => setShowModal(false)} />
