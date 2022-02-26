@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import { Dispatch, SetStateAction } from "react";
 import Button from "../Button";
 
@@ -8,6 +9,8 @@ interface HomeBtnContainerProps {
 const HomeBtnContainer: React.FC<HomeBtnContainerProps> = ({
   setShowModal,
 }) => {
+  const router = useRouter();
+
   return (
     <>
       <div className='mx-auto mb-3'>
@@ -20,7 +23,7 @@ const HomeBtnContainer: React.FC<HomeBtnContainerProps> = ({
       </div>
       <div className='mx-auto'>
         <Button
-          onClick={() => console.log("test")}
+          onClick={() => router.push("/about")}
           classNames='w-40'
           variantType='secondary'
         >
