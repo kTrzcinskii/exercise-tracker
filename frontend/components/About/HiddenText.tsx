@@ -1,36 +1,13 @@
-import { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { IoMdArrowDropdown } from "react-icons/io";
 
 interface HiddenTextProps {
   heading: string;
+  children: any;
 }
 
 const HiddenText: React.FC<HiddenTextProps> = ({ heading, children }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [timesUp, setTimesUp] = useState(false);
-  const childHeightRef = useRef<HTMLDivElement>(null);
-
-  const [childHeight, setChildHeight] = useState(0);
-
-  useEffect(() => {
-    if (childHeightRef.current?.clientHeight) {
-      setChildHeight(Number(childHeightRef.current?.clientHeight));
-    }
-  }, [childHeightRef]);
-
-  useEffect(() => {
-    if (isOpen) {
-      const myTimeout = setTimeout(() => {
-        setTimesUp(true);
-      }, 200);
-      return () => clearTimeout(myTimeout);
-    }
-    if (!isOpen) {
-      setTimesUp(false);
-    }
-  }, [isOpen]);
-
-  // const myShit = `h-[${childHeight.toString()}px]`;
 
   return (
     <div className='mt-6 md:mt-8 lg:mt-10 bg-white border-2 border-blue-800 shadow-md rounded-lg py-2 px-4 md:py-4 md:px-6'>
@@ -40,27 +17,22 @@ const HiddenText: React.FC<HiddenTextProps> = ({ heading, children }) => {
           <IoMdArrowDropdown
             className={`text-2xl lg:text-3xl ${
               isOpen ? "rotate-180" : ""
-            } transition-all duration-100 ease-in-out`}
+            } transition-all duration-150 ease-in-out`}
           />
         </div>
       </div>
       <div
         className={`${
-          isOpen
-            ? `mt-2 md:mt-3 lg:mt-5 h-[${childHeight.toString()}px]`
-            : "h-0"
-        } transition-all duration-300 ease-in-out`}
+          isOpen ? `mt-2 md:mt-3 lg:mt-5 h-fit h-` : "h-0"
+        } transition-all duration-200 ease-in-out`}
       >
-        <div
-          ref={childHeightRef}
-          className={`${
-            isOpen && timesUp
-              ? "transition-all duration-100 visible"
-              : "invisible "
-          } `}
-        >
-          {children}
-        </div>
+        {isOpen &&
+          children &&
+          React.cloneElement(children, {
+            className: `${
+              isOpen ? "h-full" : "h-0"
+            } transition-all duration-200 ease-in-out`,
+          })}
       </div>
     </div>
   );
