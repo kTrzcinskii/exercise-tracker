@@ -1,22 +1,20 @@
 import type { NextPage } from "next";
+import { route } from "next/dist/server/router";
+import { useRouter } from "next/router";
 import HiddenText from "../components/About/HiddenText";
+import Button from "../components/Button";
 
 interface AboutProps {}
 
 const About: NextPage<AboutProps> = ({}) => {
+  const router = useRouter();
+
   return (
     <div className='overflow-y-hidden mx-auto py-10 px-5 md:py-12 lg:py-16 xl:py-20 max-w-sm md:max-w-lg lg:max-w-3xl xl:max-w-5xl'>
       <h1 className='text-3xl lg:text-5xl font-semibold text-blue-800 mb-5 lg:mb-8 xl:mb-10'>
         About Exercise Tracker
       </h1>
       <div>
-        <HiddenText heading='Why there is no authorization?'>
-          <div>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit,
-            minus. Laudantium aut ea, quibusdam unde dolore tempore recusandae
-            odio doloribus?
-          </div>
-        </HiddenText>
         <HiddenText heading='What is this site for?'>
           <p>
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Officia
@@ -33,7 +31,14 @@ const About: NextPage<AboutProps> = ({}) => {
             quisquam odio at impedit quibusdam culpa saepe.
           </p>
         </HiddenText>
-        <HiddenText heading='Reasons behind creating exercise tracker this way.'>
+        <HiddenText heading='Why there is no authorization?'>
+          <div>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit,
+            minus. Laudantium aut ea, quibusdam unde dolore tempore recusandae
+            odio doloribus?
+          </div>
+        </HiddenText>
+        <HiddenText heading='Reasons behind creating exercise tracker this way'>
           <p>
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facilis
             beatae provident rerum earum quibusdam, voluptate numquam ea quo
@@ -83,6 +88,11 @@ const About: NextPage<AboutProps> = ({}) => {
             tempore?
           </p>
         </HiddenText>
+      </div>
+      <div className='flex justify-center mt-6 lg:mt-10'>
+        <Button onClick={() => router.push("/")}>
+          Go back to the home page
+        </Button>
       </div>
     </div>
   );
