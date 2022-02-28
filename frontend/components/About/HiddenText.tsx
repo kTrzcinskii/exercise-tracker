@@ -29,7 +29,7 @@ const HiddenText: React.FC<HiddenTextProps> = ({ heading, children }) => {
         {React.cloneElement(children, {
           className: `${
             isOpen ? "max-h-[2000px]" : "max-h-0"
-          } transition-all duration-100 ease-in-out overflow-hidden`,
+          } transition-all duration-100 ease-in-out overflow-hidden text-gray-700`,
         })}
       </div>
     </div>
