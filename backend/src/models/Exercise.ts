@@ -1,10 +1,10 @@
 import mongoose, { Document } from "mongoose";
-import User from "./User";
+import { UserInterface } from "./User";
 export interface ExerciseInterface extends Document {
   description: string;
   duration: number;
   date: Date;
-  user: typeof User;
+  user: UserInterface;
 }
 
 const ExerciseSchema = new mongoose.Schema<ExerciseInterface>({

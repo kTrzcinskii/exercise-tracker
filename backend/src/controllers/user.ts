@@ -58,8 +58,8 @@ export const createNewExercise = async (req: Request, res: Response) => {
   const exercise = await Exercise.create({ ...body, user });
 
   res.status(StatusCodes.CREATED).json({
-    _id: user._id,
-    username: user.username,
+    _id: exercise.user._id,
+    username: exercise.user.username,
     date: exercise.date.toDateString(),
     duration: exercise.duration,
     description: exercise.description,
