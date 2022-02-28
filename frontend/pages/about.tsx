@@ -27,7 +27,7 @@ const About: NextPage<AboutProps> = ({}) => {
                 </a>
               </Link>{" "}
               is to provide our users with convenient and reliable way of
-              keeping track of your activities. It does not have professional
+              keeping track of their activities. It does not have professional
               analyses and is mostly focused on basic usage, such as checking
               the duration of your activity, date and your custom describtion.
               It is going to help you stay more organized and keep up with
@@ -42,7 +42,7 @@ const About: NextPage<AboutProps> = ({}) => {
               on such a site, I cannot use it here because of very simple
               reason. This site is part of{" "}
               <Link
-                href='https://www.freecodecamp.org/learn/back-end-development-and-apis/#mongodb-and-mongoose'
+                href='https://www.freecodecamp.org/learn/back-end-development-and-apis'
                 passHref
               >
                 <a
@@ -52,7 +52,7 @@ const About: NextPage<AboutProps> = ({}) => {
                   freeCodeCamp course on backend technologies
                 </a>
               </Link>{" "}
-              and in order to pass all the requirements there must be no
+              and in order to meet all the requirements there must be no
               authorization on this site.
             </p>
           </div>
@@ -76,8 +76,8 @@ const About: NextPage<AboutProps> = ({}) => {
             </p>
             <p>
               However, I&apos;ve decided I want to build a fullstack app so that
-              I can show a variety of skills I got from this and other courses
-              I&apos;ve taken on freeCodeCamp site.
+              I can show a variety of skills I learnt from this and other
+              courses I&apos;ve taken on freeCodeCamp site.
             </p>
             <p className='text-gray-900 font-semibold mt-4 text-center text-lg lg:text-xl'>
               Technologies I&apos;ve used while creating this project
