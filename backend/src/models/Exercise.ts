@@ -1,18 +1,13 @@
 import mongoose, { Document } from "mongoose";
-
+import User from "./User";
 export interface ExerciseInterface extends Document {
-  username: string;
   description: string;
   duration: number;
   date: Date;
-  userId: string;
+  user: typeof User;
 }
 
 const ExerciseSchema = new mongoose.Schema<ExerciseInterface>({
-  username: {
-    type: String,
-    required: [true, "you must provide a username"],
-  },
   description: {
     type: String,
     required: [true, "you must provide a description"],
@@ -25,9 +20,10 @@ const ExerciseSchema = new mongoose.Schema<ExerciseInterface>({
     type: Date,
     default: Date.now,
   },
-  userId: {
-    type: String,
-    required: [true, "you must provide a user id"],
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    required: [true, "you must provide a user"],
   },
 });
 

@@ -55,13 +55,13 @@ export const createNewExercise = async (req: Request, res: Response) => {
     );
   }
 
-  body.username = user.username;
-  body.userId = userId;
+  // body.username = user.username;
+  // body.userId = userId;
 
-  const exercise = await Exercise.create({ ...body });
+  const exercise = await Exercise.create({ ...body, user });
 
   res.status(StatusCodes.CREATED).json({
-    _id: exercise.userId,
+    _id: user._id,
     username: user.username,
     date: exercise.date.toDateString(),
     duration: exercise.duration,
@@ -100,7 +100,7 @@ export const getUserLogs = async (req: Request, res: Response) => {
   }
 
   const exercisesPromise = Exercise.find({
-    userId,
+    user,
     ...queryObj,
   }).sort({ date: -1 });
 
