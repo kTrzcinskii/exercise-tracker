@@ -55,9 +55,6 @@ export const createNewExercise = async (req: Request, res: Response) => {
     );
   }
 
-  // body.username = user.username;
-  // body.userId = userId;
-
   const exercise = await Exercise.create({ ...body, user });
 
   res.status(StatusCodes.CREATED).json({
