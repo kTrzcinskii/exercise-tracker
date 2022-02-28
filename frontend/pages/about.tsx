@@ -29,7 +29,7 @@ const About: NextPage<AboutProps> = ({}) => {
               is to provide our users with convenient and reliable way of
               keeping track of their activities. It does not have professional
               analyses and is mostly focused on basic usage, such as checking
-              the duration of your activity, date and your custom describtion.
+              the duration of your activity, date and your custom description.
               It is going to help you stay more organized and keep up with
               fulfilling your goals.
             </p>
