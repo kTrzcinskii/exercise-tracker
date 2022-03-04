@@ -8,6 +8,7 @@ type InputFieldProps = InputHTMLAttributes<HTMLInputElement> & {
 
 const InputField: React.FC<InputFieldProps> = ({ label, ...props }) => {
   const [field, meta] = useField(props);
+
   return (
     <>
       <div>
@@ -21,7 +22,9 @@ const InputField: React.FC<InputFieldProps> = ({ label, ...props }) => {
         </label>
       </div>
       {meta.touched && meta.error ? (
-        <div className='error text-red-500 text-lg'>{meta.error}</div>
+        <div className='error text-red-500 text-sm lg:text-md text-center'>
+          {meta.error}
+        </div>
       ) : null}
     </>
   );
