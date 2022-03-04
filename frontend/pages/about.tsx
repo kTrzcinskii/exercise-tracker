@@ -103,9 +103,7 @@ const About: NextPage<AboutProps> = ({}) => {
         </HiddenText>
       </div>
       <div className='flex justify-center mt-6 lg:mt-10'>
-        <Button onClick={() => router.push("/")}>
-          Go back to the home page
-        </Button>
+        <Button onClick={() => router.back()}>Go back</Button>
       </div>
     </div>
   );
