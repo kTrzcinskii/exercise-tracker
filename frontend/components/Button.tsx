@@ -1,6 +1,6 @@
 type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   classNames?: string;
-  variantType?: "primary" | "secondary";
+  variantType?: "primary" | "secondary" | "primary-nav" | "secondary-nav";
 };
 
 const Button: React.FC<ButtonProps> = ({
@@ -13,6 +13,8 @@ const Button: React.FC<ButtonProps> = ({
     <button
       className={`${variantType === "primary" && "btn-primary"} ${
         variantType === "secondary" && "btn-secondary"
+      } ${variantType === "primary-nav" && "btn-nav-primary"} ${
+        variantType === "secondary-nav" && "btn-nav-secondary"
       } ${classNames}`}
       {...props}
     >
