@@ -9,6 +9,7 @@ export interface ISingleUser {
   _id: string;
   cout: number;
   log: ILog[];
+  Error?: string;
 }
 
 interface ILog {
