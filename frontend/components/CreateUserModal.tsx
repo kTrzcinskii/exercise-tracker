@@ -1,6 +1,9 @@
 import { Formik, Form } from "formik";
+import { useRouter } from "next/router";
 import { Dispatch, SetStateAction } from "react";
 import { CgSpinner } from "react-icons/cg";
+import useCreateUser from "../hooks/mutation/useCreateUser";
+import useLoadSingleUser from "../hooks/query/useLoadSingleUser";
 import Button from "./Button";
 import CloseBtn from "./CloseBtn";
 import InputField from "./InputField";
@@ -14,6 +17,10 @@ const CreateUserModal: React.FC<CreateUserModalProps> = ({
   showModal,
   setShowModal,
 }) => {
+  const { mutateAsync, isError, error } = useCreateUser();
+
+  const router = useRouter();
+
   return (
     <div
       className={`${
@@ -33,7 +40,20 @@ const CreateUserModal: React.FC<CreateUserModalProps> = ({
         </div>
         <Formik
           initialValues={{ username: "" }}
-          onSubmit={(values, { setErrors }) => {}}
+          onSubmit={async (values, { setErrors }) => {
+            const value = await mutateAsync(values);
+            if (value.Error) {
+              setErrors({ username: value.Error });
+            }
+
+            if (isError) {
+              setErrors({ username: error?.message });
+            }
+
+            if (value.username && value._id) {
+              router.push(`/user/${value._id}`);
+            }
+          }}
         >
           {({ values, handleSubmit, isSubmitting }) => (
             <Form onSubmit={handleSubmit}>
