@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ISingleUser, IUser } from "../../lib/IUser";
+import { ISingleUser } from "../../lib/IUser";
 
 const getSingleUserAPI = async (id: string): Promise<ISingleUser> => {
   let endpoint = `http://localhost:5000/api/users/${id}/logs`;
