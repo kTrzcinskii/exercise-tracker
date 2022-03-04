@@ -16,4 +16,12 @@
   .btn-secondary {
     @apply py-2 px-4 bg-slate-500 text-white font-semibold rounded-lg shadow-md hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-opacity-75 transition-all duration-200 ease-in-out;
   }
+
+  .btn-nav-primary {
+    @apply py-2 px-4 bg-white text-blue-800 font-semibold rounded-lg shadow-md hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-200 focus:ring-opacity-75 transition-all duration-200 ease-in-out;
+  }
+
+  .btn-nav-secondary {
+    @apply py-2 px-4 bg-slate-700 text-white font-semibold rounded-lg shadow-md hover:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-slate-900 focus:ring-opacity-75 transition-all duration-200 ease-in-out;
+  }
 }
