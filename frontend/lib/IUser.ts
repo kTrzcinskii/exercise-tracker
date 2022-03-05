@@ -7,12 +7,12 @@ export interface IUser {
 export interface ISingleUser {
   username: string;
   _id: string;
-  cout: number;
+  count: number;
   log: ILog[];
   Error?: string;
 }
 
-interface ILog {
+export interface ILog {
   description: string;
   duration: number;
   date: string;

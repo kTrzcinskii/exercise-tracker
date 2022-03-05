@@ -2,6 +2,9 @@ import type { NextPage } from "next";
 import { useRouter } from "next/router";
 import BigLoading from "../../components/BigLoading";
 import Navbar from "../../components/Navbar";
+import AddLogBtn from "../../components/User/AddLogBtn";
+import ProfileHeading from "../../components/User/ProfileHeading";
+import UserLogs from "../../components/User/UserLogs";
 import useLoadSingleUser from "../../hooks/query/useLoadSingleUser";
 
 interface SingleUserPageProps {}
@@ -43,7 +46,11 @@ const SingleUserPage: NextPage<SingleUserPageProps> = ({}) => {
   return (
     <>
       <Navbar />
-      User pzdr!
+      <div className='mt-52 mx-auto'>
+        <ProfileHeading count={data?.count!} username={data?.username!} />
+        <AddLogBtn />
+        <UserLogs logs={data?.log!} />
+      </div>
     </>
   );
 };
