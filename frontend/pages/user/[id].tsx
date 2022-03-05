@@ -1,8 +1,10 @@
 import type { NextPage } from "next";
 import { useRouter } from "next/router";
+import { useState } from "react";
 import BigLoading from "../../components/BigLoading";
 import Navbar from "../../components/Navbar";
 import AddLogBtn from "../../components/User/AddLogBtn";
+import CreateLogModal from "../../components/User/CreateLogModal";
 import ProfileHeading from "../../components/User/ProfileHeading";
 import UserLogs from "../../components/User/UserLogs";
 import useLoadSingleUser from "../../hooks/query/useLoadSingleUser";
@@ -12,6 +14,8 @@ interface SingleUserPageProps {}
 const SingleUserPage: NextPage<SingleUserPageProps> = ({}) => {
   const router = useRouter();
   let userId = "";
+
+  const [showModal, setShowModal] = useState(false);
 
   if (typeof router.query.id === "string") {
     userId = router.query.id;
@@ -48,9 +52,10 @@ const SingleUserPage: NextPage<SingleUserPageProps> = ({}) => {
       <Navbar />
       <div className='mt-52 mx-auto'>
         <ProfileHeading count={data?.count!} username={data?.username!} />
-        <AddLogBtn />
+        <AddLogBtn setShowModal={setShowModal} />
         <UserLogs logs={data?.log!} />
       </div>
+      <CreateLogModal showModal={showModal} setShowModal={setShowModal} />
     </>
   );
 };
