@@ -3,7 +3,6 @@ import { useRouter } from "next/router";
 import { Dispatch, SetStateAction } from "react";
 import { CgSpinner } from "react-icons/cg";
 import useCreateUser from "../hooks/mutation/useCreateUser";
-import useLoadSingleUser from "../hooks/query/useLoadSingleUser";
 import Button from "./Button";
 import CloseBtn from "./CloseBtn";
 import InputField from "./InputField";
