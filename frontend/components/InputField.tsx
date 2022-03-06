@@ -11,8 +11,8 @@ const InputField: React.FC<InputFieldProps> = ({ label, ...props }) => {
 
   return (
     <>
-      <div>
-        <label className='block text-gray-700 lg:text-lg font-bold mb-3'>
+      <div className='mb-3'>
+        <label className='block text-gray-700 lg:text-lg font-bold mb-1'>
           {label}
           <input
             className='lg:text-lg mt-2 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"'
@@ -20,12 +20,12 @@ const InputField: React.FC<InputFieldProps> = ({ label, ...props }) => {
             {...props}
           />
         </label>
+        {meta.touched && meta.error ? (
+          <div className='error text-red-500 text-sm lg:text-md'>
+            {meta.error}
+          </div>
+        ) : null}
       </div>
-      {meta.touched && meta.error ? (
-        <div className='error text-red-500 text-sm lg:text-md text-center'>
-          {meta.error}
-        </div>
-      ) : null}
     </>
   );
 };

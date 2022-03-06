@@ -4,11 +4,20 @@ import { CgSpinner } from "react-icons/cg";
 import Button from "../Button";
 import CloseBtn from "../CloseBtn";
 import InputField from "../InputField";
+import * as Yup from "yup";
 
 interface CreateLogModalProps {
   showModal: boolean;
   setShowModal: Dispatch<SetStateAction<boolean>>;
 }
+
+const valdiationSchema = Yup.object({
+  description: Yup.string().required("Please enter description"),
+  duration: Yup.number()
+    .min(1, "Duration must be greater than 0")
+    .required("Please enter duration"),
+  date: Yup.string(),
+});
 
 const CreateLogModal: React.FC<CreateLogModalProps> = ({
   showModal,
@@ -37,7 +46,8 @@ const CreateLogModal: React.FC<CreateLogModalProps> = ({
             duration: "",
             date: `${new Date().toISOString().slice(0, 10)}`,
           }}
-          onSubmit={async (values, { setErrors }) => {
+          validationSchema={valdiationSchema}
+          onSubmit={async (values) => {
             console.log(values);
           }}
         >
@@ -54,7 +64,7 @@ const CreateLogModal: React.FC<CreateLogModalProps> = ({
                 <InputField
                   label='Duration'
                   name='duration'
-                  placeholder='enter duration'
+                  placeholder='enter duration (in minutes)'
                   type='number'
                   value={values.duration}
                 />

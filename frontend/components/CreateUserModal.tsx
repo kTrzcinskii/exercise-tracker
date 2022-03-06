@@ -6,11 +6,16 @@ import useCreateUser from "../hooks/mutation/useCreateUser";
 import Button from "./Button";
 import CloseBtn from "./CloseBtn";
 import InputField from "./InputField";
+import * as Yup from "yup";
 
 interface CreateUserModalProps {
   showModal: boolean;
   setShowModal: Dispatch<SetStateAction<boolean>>;
 }
+
+const validationSchema = Yup.object({
+  username: Yup.string().required("Please enter username"),
+});
 
 const CreateUserModal: React.FC<CreateUserModalProps> = ({
   showModal,
@@ -39,6 +44,7 @@ const CreateUserModal: React.FC<CreateUserModalProps> = ({
         </div>
         <Formik
           initialValues={{ username: "" }}
+          validationSchema={validationSchema}
           onSubmit={async (values, { setErrors }) => {
             const value = await mutateAsync(values);
             if (value.Error) {
