@@ -15,7 +15,7 @@ const InputField: React.FC<InputFieldProps> = ({ label, ...props }) => {
         <label className='block text-gray-700 lg:text-lg font-bold mb-1'>
           {label}
           <input
-            className='lg:text-lg mt-2 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"'
+            className='lg:text-lg mt-2 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring focus:ring-blue-700 focus:ring-opacity-75 transition-all duration-75 ease-in-out'
             {...field}
             {...props}
           />
