@@ -77,12 +77,12 @@ const CreateLogModal: React.FC<CreateLogModalProps> = ({
                 <Button
                   type='submit'
                   disabled={isSubmitting}
-                  classNames='btn-primary w-44 mx-auto mt-8'
+                  classNames='btn-primary w-36 mx-auto mt-8'
                 >
                   {isSubmitting ? (
                     <CgSpinner className='inline-block mr-2 animate-spin text-xl' />
                   ) : (
-                    "Add New Exercise"
+                    "Add Exercise"
                   )}
                 </Button>
               </div>
