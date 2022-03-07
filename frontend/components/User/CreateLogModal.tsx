@@ -5,6 +5,7 @@ import Button from "../Button";
 import CloseBtn from "../CloseBtn";
 import InputField from "../InputField";
 import * as Yup from "yup";
+import DatePickerField from "../DatePicker";
 
 interface CreateLogModalProps {
   showModal: boolean;
@@ -16,7 +17,7 @@ const valdiationSchema = Yup.object({
   duration: Yup.number()
     .min(1, "Duration must be greater than 0")
     .required("Please enter duration"),
-  date: Yup.string(),
+  date: Yup.string().required("Please enter date"),
 });
 
 const CreateLogModal: React.FC<CreateLogModalProps> = ({
@@ -68,12 +69,13 @@ const CreateLogModal: React.FC<CreateLogModalProps> = ({
                   type='number'
                   value={values.duration}
                 />
-                <InputField
+                {/* <InputField
                   label='Date'
                   name='Date'
                   type='date'
                   value={values.date}
-                />
+                /> */}
+                <DatePickerField name='date' />
                 <Button
                   type='submit'
                   disabled={isSubmitting}
