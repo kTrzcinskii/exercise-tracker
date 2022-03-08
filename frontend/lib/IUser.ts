@@ -21,3 +21,15 @@ export interface ILog {
 export interface ICreateUserParams {
   username: string;
 }
+
+export interface IExercise {
+  description: string;
+  duration: number;
+  date: string;
+}
+
+export interface ICreateExerciseParams extends IExercise {
+  userId: string;
+}
+
+export type IExerciseResponse = ICreateExerciseParams & IUser;

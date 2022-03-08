@@ -55,7 +55,11 @@ const SingleUserPage: NextPage<SingleUserPageProps> = ({}) => {
         <AddLogBtn setShowModal={setShowModal} />
         <UserLogs logs={data?.log!} />
       </div>
-      <CreateLogModal showModal={showModal} setShowModal={setShowModal} />
+      <CreateLogModal
+        showModal={showModal}
+        setShowModal={setShowModal}
+        userId={userId}
+      />
     </>
   );
 };

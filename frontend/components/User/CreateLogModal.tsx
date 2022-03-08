@@ -6,10 +6,14 @@ import CloseBtn from "../CloseBtn";
 import InputField from "../InputField";
 import * as Yup from "yup";
 import DatePickerField from "../DatePicker";
+import useCreateExercise from "../../hooks/mutation/useCreateExercise";
+import { useQueryClient } from "react-query";
+import BigLoading from "../BigLoading";
 
 interface CreateLogModalProps {
   showModal: boolean;
   setShowModal: Dispatch<SetStateAction<boolean>>;
+  userId: string;
 }
 
 const valdiationSchema = Yup.object({
@@ -23,7 +27,12 @@ const valdiationSchema = Yup.object({
 const CreateLogModal: React.FC<CreateLogModalProps> = ({
   showModal,
   setShowModal,
+  userId,
 }) => {
+  const queryClient = useQueryClient();
+
+  const { mutateAsync, isError, error } = useCreateExercise();
+
   return (
     <div
       className={`${
@@ -48,48 +57,64 @@ const CreateLogModal: React.FC<CreateLogModalProps> = ({
             date: `${new Date().toISOString().slice(0, 10)}`,
           }}
           validationSchema={valdiationSchema}
-          onSubmit={async (values) => {
-            console.log(values);
+          onSubmit={async (values, { setErrors, resetForm }) => {
+            const { date, description, duration } = values;
+            const variables = {
+              userId,
+              description,
+              duration: Number(duration),
+              date,
+            };
+
+            await mutateAsync(variables);
+            if (isError) {
+              console.log(error);
+              setErrors({ date: error.message });
+            }
+            queryClient.invalidateQueries(["singleUser", userId]);
+
+            setShowModal(false);
+            resetForm();
           }}
         >
-          {({ values, handleSubmit, isSubmitting }) => (
-            <Form onSubmit={handleSubmit}>
-              <div className='flex flex-col'>
-                <InputField
-                  label='Description'
-                  name='description'
-                  placeholder='enter description'
-                  type='text'
-                  value={values.description}
-                />
-                <InputField
-                  label='Duration'
-                  name='duration'
-                  placeholder='enter duration (in minutes)'
-                  type='number'
-                  value={values.duration}
-                />
-                {/* <InputField
-                  label='Date'
-                  name='Date'
-                  type='date'
-                  value={values.date}
-                /> */}
-                <DatePickerField name='date' />
-                <Button
-                  type='submit'
-                  disabled={isSubmitting}
-                  classNames='btn-primary w-36 mx-auto mt-8'
-                >
-                  {isSubmitting ? (
-                    <CgSpinner className='inline-block mr-2 animate-spin text-xl' />
-                  ) : (
-                    "Add Exercise"
-                  )}
-                </Button>
+          {({ values, handleSubmit, isSubmitting }) =>
+            !isSubmitting ? (
+              <Form onSubmit={handleSubmit}>
+                <div className='flex flex-col'>
+                  <InputField
+                    label='Description'
+                    name='description'
+                    placeholder='enter description'
+                    type='text'
+                    value={values.description}
+                  />
+                  <InputField
+                    label='Duration'
+                    name='duration'
+                    placeholder='enter duration (in minutes)'
+                    type='number'
+                    value={values.duration}
+                  />
+                  <DatePickerField name='date' />
+                  <Button
+                    type='submit'
+                    disabled={isSubmitting}
+                    classNames='btn-primary w-36 mx-auto mt-8'
+                  >
+                    {isSubmitting ? (
+                      <CgSpinner className='inline-block mr-2 animate-spin text-xl' />
+                    ) : (
+                      "Add Exercise"
+                    )}
+                  </Button>
+                </div>
+              </Form>
+            ) : (
+              <div className='flex justify-center items-center'>
+                <BigLoading />
               </div>
-            </Form>
-          )}
+            )
+          }
         </Formik>
       </div>
     </div>

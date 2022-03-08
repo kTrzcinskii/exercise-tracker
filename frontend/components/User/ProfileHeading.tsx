@@ -21,7 +21,7 @@ const ProfileHeading: React.FC<ProfileHeadingProps> = ({ username, count }) => {
         <h3 className='font-semibold text-blue-800 text-3xl md:text-4xl lg:text-5xl'>
           {username}
         </h3>
-        <p className='text-gray-700 text-sm md:text-base lg:text-lg'>
+        <p className='text-gray-700 text-sm md:text-base lg:text-lg text-center'>
           Exercises done:{" "}
           <span className='text-slate-800 font-semibold'>{count}</span>
         </p>
