@@ -17,7 +17,7 @@ const HomeBtnContainer: React.FC<HomeBtnContainerProps> = ({
         <Button onClick={() => setShowModal(true)} classNames='w-40'>
           Create User
         </Button>
-        <Button onClick={() => console.log("test")} classNames='w-40 ml-3'>
+        <Button onClick={() => router.push("/users")} classNames='w-40 ml-3'>
           Browse Users
         </Button>
       </div>
