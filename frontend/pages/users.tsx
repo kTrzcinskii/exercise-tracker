@@ -49,7 +49,7 @@ const Users: NextPage<usersProps> = ({}) => {
         <Navbar />
         <div className='mt-36 mx-auto'>
           <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-          <h1 className='text-2xl md:text-3xl text-center text-blue-800 mt-5 md:mt-7 lg:mt-10'>
+          <h1 className='text-xl md:text-2xl text-center text-blue-800 mt-5 md:mt-7 lg:mt-10'>
             There isn&apos;t any user matching your searching criteria.
           </h1>
         </div>
@@ -62,7 +62,7 @@ const Users: NextPage<usersProps> = ({}) => {
       <Navbar />
       <div className='mt-36 mx-auto'>
         <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-[1000px] gap-3 md:gap-5 lg:gap-7 mx-auto mt-3 md:mt-5 lg:mt-8'>
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-[1000px] gap-3 md:gap-5 lg:gap-7 mx-auto my-3 md:my-5 lg:my-8'>
           {realData?.map((user) => {
             return (
               <UserCard
