@@ -2,7 +2,7 @@ import axios from "axios";
 import { ISingleUser } from "../../lib/IUser";
 
 const getSingleUserAPI = async (id: string): Promise<ISingleUser> => {
-  let endpoint = `http://localhost:5000/api/users/${id}/logs`;
+  let endpoint = `https://exercise-tracker-kt.herokuapp.com/api/users/${id}/logs`;
 
   const response = await axios.get(endpoint);
 

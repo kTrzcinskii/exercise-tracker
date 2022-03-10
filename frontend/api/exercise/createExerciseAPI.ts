@@ -6,7 +6,7 @@ const createExercieAPI = async (
   duration: number,
   date: string
 ) => {
-  const endpoint = `http://localhost:5000/api/users/${userId}/exercises`;
+  const endpoint = `https://exercise-tracker-kt.herokuapp.com/api/users/${userId}/exercises`;
 
   try {
     const response = await axios.post(

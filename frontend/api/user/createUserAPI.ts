@@ -1,7 +1,7 @@
 import axios from "axios";
 import { IUser } from "../../lib/IUser";
 
-const endpoint = "http://localhost:5000/api/users";
+const endpoint = "https://exercise-tracker-kt.herokuapp.com/api/users";
 
 const createUserAPI = async (username: string): Promise<IUser> => {
   try {

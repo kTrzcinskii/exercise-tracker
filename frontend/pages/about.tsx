@@ -99,7 +99,9 @@ const About: NextPage<AboutProps> = ({}) => {
               <MyLink href='https://github.com/kTrzcinskii/exercise-tracker'>
                 Project Repository
               </MyLink>
-              <MyLink href='/'>Backend</MyLink>
+              <MyLink href='https://exercise-tracker-kt.herokuapp.com'>
+                Backend
+              </MyLink>
             </ul>
           </div>
         </HiddenText>
