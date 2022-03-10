@@ -69,7 +69,7 @@ const CreateLogModal: React.FC<CreateLogModalProps> = ({
             await mutateAsync(variables);
             if (isError) {
               console.log(error);
-              setErrors({ date: error.message });
+              setErrors({ date: error?.message });
             }
             queryClient.invalidateQueries(["singleUser", userId]);
 
