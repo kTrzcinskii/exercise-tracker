@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url": "http://localhost:5000/api/users",
+      "url": "https://exercise-tracker-kt.herokuapp.com/api/users",
       "variables": {}
     }
   ],
