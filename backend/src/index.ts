@@ -6,6 +6,8 @@ import notFound from "./middlewares/notFound";
 import errorHandler from "./middlewares/errorHandler";
 import mongoose from "mongoose";
 import userRouter from "./routes/user";
+import swaggerUI from "swagger-ui-express";
+import * as SwaggerDocument from "./swagger.json";
 
 const app = express();
 app.use(cors());
@@ -17,6 +19,8 @@ app.use(express.urlencoded({ extended: true }));
 app.get("/", function (_: Request, res: Response) {
   res.sendFile(process.cwd() + "/views/index.html");
 });
+
+app.use("/docs", swaggerUI.serve, swaggerUI.setup(SwaggerDocument));
 
 app.use("/api/users", userRouter);
 

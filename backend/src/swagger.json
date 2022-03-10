@@ -1,0 +1,205 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Exercise Tracker API",
+    "contact": {},
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:5000/api/users",
+      "variables": {}
+    }
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "tags": ["Users"],
+        "summary": "Get all users",
+        "operationId": "GetAllUsers",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Get all the users",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": []
+      },
+      "post": {
+        "tags": ["Users"],
+        "summary": "Create User",
+        "operationId": "Create User",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateUserRequest"
+              },
+              "example": {
+                "username": "PerfectUsername"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "User successfully created",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": []
+      }
+    },
+    "/{id}/exercise": {
+      "parameters": [
+        {
+          "in": "path",
+          "name": "id",
+          "schema": {
+            "type": "string"
+          },
+          "required": true,
+          "description": "The user ID"
+        }
+      ],
+      "post": {
+        "tags": ["Exercises"],
+        "summary": "Create Exercise",
+        "operationId": "Create Exercise",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateExerciseRequest"
+              },
+              "example": {
+                "description": "Perfect Workout",
+                "duration": 5,
+                "date": "2020-12-12"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Exercise successfully created",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": []
+      }
+    },
+    "/{id}/logs": {
+      "parameters": [
+        {
+          "in": "path",
+          "name": "id",
+          "schema": {
+            "type": "string"
+          },
+          "required": true,
+          "description": "The user ID"
+        },
+        {
+          "in": "query",
+          "name": "limit",
+          "schema": {
+            "type": "number"
+          },
+          "required": false,
+          "description": "The limit of exercises coming in response"
+        },
+        {
+          "in": "query",
+          "name": "from",
+          "schema": {
+            "type": "string"
+          },
+          "required": false,
+          "description": "Date from which to start getting exercises"
+        },
+        {
+          "in": "query",
+          "name": "to",
+          "schema": {
+            "type": "string"
+          },
+          "required": false,
+          "description": "Date to which to start getting exercises"
+        }
+      ],
+      "get": {
+        "tags": ["Exercises"],
+        "summary": "Get all user's exercises",
+        "operationId": "GetAllUsersExercises",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Get all the user's exercises",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CreateUserRequest": {
+        "title": "CreateUserRequest",
+        "required": ["username"],
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "username": "PerfectUsername"
+        }
+      },
+      "CreateExerciseRequest": {
+        "title": "CreateExerciseRequest",
+        "required": ["description", "duration"],
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string"
+          },
+          "duration": {
+            "type": "number"
+          },
+          "date": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "description": "Perfect Workout",
+          "duration": 5,
+          "date": "2020-12-12"
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Users",
+      "description": ""
+    },
+    {
+      "name": "Exercises",
+      "description": ""
+    }
+  ]
+}
